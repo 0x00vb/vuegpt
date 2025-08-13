@@ -164,3 +164,26 @@ export const updateSession = async (req, res) => {
         res.end();
     }
 };
+
+export const renameSession = async (req, res) => {
+    const { id } = req.params;
+    const { title } = req.body;
+    try {
+        const session = await SessionsService.renameSession(id, title);
+        res.json(session);
+    } catch (error) {
+        console.error('Error renaming session:', error);
+        res.status(500).json({ error: 'Failed to rename session' });
+    }
+}
+
+export const deleteSession = async (req,res) => {
+    const { id } = req.params;
+    try {
+        const session = await SessionsService.deleteSession(id);
+        res.json(session);
+    } catch (error) {
+        console.error('Error deleting session:', error);
+        res.status(500).json({ error: 'Failed to delete session' });
+    }
+}

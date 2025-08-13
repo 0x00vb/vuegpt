@@ -47,3 +47,11 @@ export const updateSessionWithMessageStream = async (sessionId, content) => {
         sessionId
     };
 }; 
+
+export const renameSession = async (id, title) => {
+    return await SessionsRepository.renameSession(id, title);
+};
+
+export const deleteSession = async (id) => {
+    return await SessionsRepository.deleteSession(id);
+};

@@ -42,12 +42,7 @@ const handleRenameSession = async (sessionId) => {
 const confirmRename = async (sessionId) => {
   if (editingTitle.value.trim() && editingTitle.value.trim() !== '') {
     try {
-      // For now, just update the session in the store
-      const session = chatStore.sessions.find(s => s.id === sessionId);
-      if (session) {
-        session.title = editingTitle.value.trim();
-      }
-      console.log(`Renaming session ${sessionId} to "${editingTitle.value.trim()}"`);
+      await chatStore.renameSession(sessionId, editingTitle.value.trim());
     } catch (error) {
       console.error('Error renaming session:', error);
     }
@@ -62,20 +57,7 @@ const cancelEdit = () => {
 
 const handleDeleteSession = async (sessionId) => {
   try {
-    // For now, just remove from the store
-    // In a real app, you'd call an API endpoint here
-    const index = chatStore.sessions.findIndex(s => s.id === sessionId);
-    if (index !== -1) {
-      chatStore.sessions.splice(index, 1);
-    }
-    
-    // If we're deleting the current session, clear it
-    if (chatStore.currentSession?.id === sessionId) {
-      chatStore.currentSession = null;
-      chatStore.messages = [];
-    }
-    
-    console.log(`Deleting session ${sessionId}`);
+    await chatStore.deleteSession(sessionId);
   } catch (error) {
     console.error('Error deleting session:', error);
   }

@@ -1,4 +1,4 @@
-import { getSessions, createSession } from '@/api/sessions'
+import { getSessions, createSession, renameSession, deleteSession } from '@/api/sessions'
 import { getMessages, createMessage } from '@/api/messages'
 import { defineStore } from 'pinia'
 
@@ -113,6 +113,27 @@ export const useChatStore = defineStore('chat', {
                 this.streamingMessageId = null;
             }
         },
+        async renameSession(sessionId, title) {
+            try {
+                const renamedSession = await renameSession(sessionId, title);
+                this.sessions = this.sessions.map(session => session.id === sessionId ? renamedSession : session);
+            } catch (error) {
+                this.error = error;
+            }
+        },
+        async deleteSession(sessionId) {
+            try {
+                await deleteSession(sessionId);
+                this.sessions = this.sessions.filter(session => session.id !== sessionId);
+                if (this.currentSession?.id === sessionId) {
+                    this.currentSession = null;
+                    this.messages = [];
+                  }              
+            
+            } catch (error) {
+                this.error = error;
+            }
+        }
 
     }   
 })
