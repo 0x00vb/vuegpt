@@ -1,6 +1,6 @@
 import * as SessionsRepository from '../repositories/sessions.repository.js';
 import * as MessagesRepository from '../repositories/messages.repository.js';
-import { generateAssistantResponse } from './ai.service.js';
+import { generateAssistantResponse, generateAssistantResponseStream } from './ai.service.js';
 
 export const getSessions = async () => {
     return await SessionsRepository.getAllSessions();
@@ -28,4 +28,22 @@ export const updateSessionWithMessage = async (sessionId, content) => {
     // Save assistant message
     const assistantMessage = await MessagesRepository.saveMessage(sessionId, 'assistant', assistantResponse);
     return { userMessage, assistantMessage };
+};
+
+export const updateSessionWithMessageStream = async (sessionId, content) => {
+    // Save user message
+    const userMessage = await MessagesRepository.saveMessage(sessionId, 'user', content);
+    
+    // Get conversation history
+    const historyRows = await MessagesRepository.getMessagesBySessionId(sessionId);
+    const history = historyRows.map(msg => ({
+        role: msg.role,
+        parts: msg.content
+    }));
+
+    return {
+        userMessage,
+        getStream: () => generateAssistantResponseStream(history),
+        sessionId
+    };
 }; 
