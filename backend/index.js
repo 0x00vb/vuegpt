@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -6,6 +6,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth.routes.js';
 import sessionsRoutes from './routes/sessions.routes.js';
 
+dotenv.config();
 
 const app = express();
 const port = 3000;

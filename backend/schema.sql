@@ -1,8 +1,10 @@
 -- Users (if you add auth later)
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name TEXT,
-    email TEXT,
+    firstname TEXT,
+    lastname TEXT,
+    password TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 

@@ -12,5 +12,6 @@ export const register = async (firstName, lastName, email, password) => {
 
 export const verifyToken = async () => {
     const { data } = await api.post('/auth/verify-token')
+    console.log('Token verification response:', data)
     return data
 }

@@ -14,13 +14,7 @@ export const createMessage = async (sessionId, message, onChunk, onComplete, onE
             ? `${API_BASE_URL}/sessions/${sessionId}/messages`
             : `${API_BASE_URL}/sessions/messages`; // For new sessions - use the stream endpoint
         
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message }),
-        });
+        const response = await api.post(url, { message })
 
         if (!response.ok) {
             throw new Error('Failed to create message stream');

@@ -7,6 +7,8 @@ export const login = async (req, res) => {
     try{
         const {rows} = await db.query('SELECT * FROM users WHERE email = $1', [email])
         const user = rows[0]
+
+        console.log('User found:', user)
         if (!user) {
             return res.status(401).json({ message: 'Invalid credentials' })
         }
@@ -15,7 +17,7 @@ export const login = async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' })
         }
     
-        const token = generateToken(user.id, user.email, user.firstName + ' ' + user.lastName)
+        const token = generateToken(user.id, user.email, user.firstname + ' ' + user.lastname)
 
         res.status(200).json({ message: 'Login successful', token })
     }catch(error){

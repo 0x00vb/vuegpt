@@ -54,8 +54,6 @@ const sendMessage = async () => {
     message.value = "";
 }
 
-
-
 function onImageChange(event) {
     const file = event.target.files[0];
     if (file) {

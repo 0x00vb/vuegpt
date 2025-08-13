@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import Sidebar from '@/components/Sidebar.vue';
 import MainPanel from '@/components/MainPanel.vue';
 import ChatsModal from '@/components/ChatsModal.vue';
+import ProfileIcon from '@/components/ProfileIcon.vue';
 
 const isChatsModalOpen = ref(false);
 
@@ -17,5 +18,6 @@ const toggleChatsModal = () => {
         <Sidebar :toggle-modal="toggleChatsModal" />
         <MainPanel />
         <ChatsModal :is-open="isChatsModalOpen" :toggleModal="toggleChatsModal" />
+        <ProfileIcon />
     </div>
 </template>
