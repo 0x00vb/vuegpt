@@ -7,7 +7,7 @@ const chatStore = useChatStore();
 const messagesContainer = ref(null);
 
 watch(
-    () => chatStore.messages.length,
+    () => chatStore.messages,
     async () => {
         await nextTick();
         if(messagesContainer.value){
@@ -16,7 +16,8 @@ watch(
                 behavior: 'smooth'
             })
         }
-    }
+    },
+    { deep: true }
 )
 
 </script>
