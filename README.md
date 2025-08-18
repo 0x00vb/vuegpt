@@ -15,6 +15,21 @@ This project is a key part of my portfolio. It demonstrates my ability to:
 
 I am proud of the work I have done on this project and I am confident that it showcases my skills and experience as a software engineer.
 
+## Screenshots
+
+Here are some screenshots of the application in action:
+
+<table>
+  <tr>
+    <td>
+      <img src="public/Screenshot_1.png" alt="Screenshot 1" width="400"/>
+    </td>
+    <td>
+      <img src="public/Screenshot_2.png" alt="Screenshot 2" width="400"/>
+    </td>
+  </tr>
+</table>
+
 ## Features
 
 *   **User Authentication:** Secure user registration and login.
