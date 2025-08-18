@@ -45,7 +45,7 @@ Here are some screenshots of the application in action:
 *   **Vue.js:** A progressive JavaScript framework for building user interfaces.
 *   **Vite.js:** A fast build tool for modern web projects.
 *   **Vue Router:** The official router for Vue.js.
-*   **Vuex:** A state management pattern and library for Vue.js applications.
+*   **Pinia:** A state management library for Vue.js applications.
 *   **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
 *   **Axios:** A promise-based HTTP client for the browser and Node.js.
 
